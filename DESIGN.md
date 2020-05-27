@@ -23,6 +23,9 @@ Output: If command is to "create", a randomly-generated puzzle will be printed t
 4. For each other 3x3 square not along the diagonal
   4.1 Attempt to make a 3x3 square there
   4.2 If valid 3x3 square cannot be found after many attempts, return to diagonally-filled puzzle and try again
+5. Repeat removal process until 14 values has been removed
+  5.1 Find random point in two-dimensional array to remove
+  5.2 If unique solution exists if this value is removed, remove it
 ```
 
 ### Functional decomposition modules into functions
