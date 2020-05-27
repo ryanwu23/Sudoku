@@ -15,6 +15,15 @@ Input: the only inputs are the command-line parameters; see the User Interface a
 
 Output: If command is to "create", a randomly-generated puzzle will be printed to `stdout`. If command is to "solve", puzzle with solution is printed to `stdout`.
 
+## Pseudo-code for logic/algorithmic flow to create a sudoku puzzle
+```
+1. Execute from command-line as shown on user interface
+2. Fill in the diagonal 3x3 squares with guarantee that these three WILL be valid
+3. Save a copy of the puzzle containing diagonal fills
+4. For each other 3x3 square not along the diagonal
+  4.1 Attempt to make a 3x3 square there
+  4.2 If valid 3x3 square cannot be found after many attempts, return to diagonally-filled puzzle and try again
+
 ### Functional decomposition modules into functions
 We anticipate the following functions:
 1. *main*, which parses the arguments and calls functions to either create or solve a puzzle
