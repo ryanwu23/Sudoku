@@ -37,3 +37,9 @@ We anticipate the following functions:
 3. *compute* fills in the 3x3 squares using *create*
 4. *create* will attempt to find the set values for the 3x3 square with *form_three*
 5. *form_three* attempts to find random values to fill in each point the the 3x3 square, using *is_valid* to see if a random value will work
+
+### Testing Plan
+- test that a sudoku puzzle forms within short amount of time
+- test that sudoku puzzle is randomly-genertaed by making another and comparing
+- test that sudoku puzzle can be solved within a short amount of time
+- test that randomly-generated puzzle given to solver can be solved
