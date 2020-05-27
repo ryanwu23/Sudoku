@@ -7,7 +7,7 @@ Sudoku's interface is with the user on the command-line and with one command lin
 ./sudoku create // to create a random Sudoku puzzle
 ```
 ```
-./sudoku solve to solve a random Sudoku puzzle
+./sudoku solve // to solve a random Sudoku puzzle
 ```
 
 ### Functional decomposition modules into functions
