@@ -48,7 +48,7 @@ We anticipate the following functions:
 
 ### Dataflow through functions
 We anticipate the following functions:
-1. *main* parses the arguments and calls appropriate function given command; calls *create_sudoku* 
+1. *main* parses the arguments and calls appropriate function given command; calls *create_sudoku* when told to create
 #### Dataflow through create
 1. *create_sudoku*, when given command to "create", will form necessary structures, making use of *copy*, makes diagonals using *form_three*, use *compute* to fill in other 3x3 squares, and print out the resulting sudoku puzzle
 2. *compute* fills in the 3x3 squares using *create*
