@@ -10,6 +10,11 @@ Sudoku's interface is with the user on the command-line and with one command lin
 ./sudoku solve // to solve a random Sudoku puzzle
 ```
 
+### Inputs and Outputs
+Input: the only inputs are the command-line parameters; see the User Interface above.
+
+Output: If command is to "create", a randomly-generated puzzle will be printed to `stdout`. If command is to "solve", puzzle with solution is printed to `stdout`.
+
 ### Functional decomposition modules into functions
 We anticipate the following functions:
 1. *main*, which parses the arguments and calls functions to either create or solve a puzzle
