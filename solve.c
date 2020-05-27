@@ -45,7 +45,7 @@ void solve(void){
     }
 
     if (isValidGrid(input)){
-        if (! solve(input)){
+        if (! solveSudoku(input)){
             printf("Grid cannot be solved.\n");
         }
         printGrid(input);
@@ -133,7 +133,7 @@ bool solveSudoku(int grid[n][n]){
     for (int i = 1; i <= n; i++){
         if (isValidInsert(grid, row, col, i)){
             grid[row][col] = i;
-            if (solve(grid)){
+            if (solveSudoku(grid)){
                 return true;
             }
             grid[row][col] = 0;

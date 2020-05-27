@@ -1,7 +1,7 @@
 /*
  * create.c - CS50 'create' module
  *
- * Andrew Truong, Mark Gitau, Jeff Gitahi, Spring 2020
+ * Andrew Truong, Mark Gitau, Jeff Gitahi, Ryan Wu, Spring 2020
  */
 
 #include <stdio.h>
@@ -11,12 +11,12 @@
 #include <stdbool.h>
 
 // Checks whether a number can be placed in the puzzle.
-bool is_valid (int row_seen[9], int column_seen[9], int square_seen[9], int random) {
+static bool is_valid (int row_seen[9], int column_seen[9], int square_seen[9], int random) {
     return (square_seen[random-1] == 0 && row_seen[random-1] == 0 && column_seen[random-1] == 0);
 }
 
 // Makes a copy of an original puzzle
-void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
+static void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
     for (int row = 0; row < 9; row ++) {
 		for (int column = 0; column < 9; column ++) 
 				copy_puzzle[row][column] = puzzle[row][column];
@@ -24,14 +24,14 @@ void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
 }
 
 // Clears a puzzle by turning all of the values to 0
-void clear(int puzzle[9][9]) {
+static void clear(int puzzle[9][9]) {
     for (int row = 0; row < 9; row ++) {
 		for (int column = 0; column < 9; column ++) 
 				puzzle[row][column] = 0;
 	}
 }
 
-// Fills in 3x3 area whilst following sudoku puzzle rules
+/**************** form_three ****************/
 bool form_three(int puzzle[9][9], int row_start, int column_start) {
     int row_seen[9];
 	int column_seen[9];
@@ -112,7 +112,7 @@ bool form_three(int puzzle[9][9], int row_start, int column_start) {
     return true;
 }
 
-// Fills out a 3x3 block inside the puzzle
+/**************** create ****************/
 bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_start, int column_start) {
     copy(copy_puzzle, puzzle); 
 
@@ -133,7 +133,7 @@ bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_
 
 }
 
-// Creates the filled-out puzzle from one with diagonals filled
+/**************** compute ****************/
 bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puzzle[9][9], int attempt[1][1]) {
     attempt[0][0] = 0;
 
@@ -165,6 +165,7 @@ bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puz
 
 }
 
+/**************** create_sudoku ****************/
 int create_sudoku() {
     srand(time(0)); // https://www.geeksforgeeks.org/generating-random-number-range-c/
 
@@ -205,9 +206,7 @@ int create_sudoku() {
 
 	}
 
-    return 0;
-}
+    printf("\n");
 
-int main() {
-    return create_sudoku();
+    return 0;
 }
