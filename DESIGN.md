@@ -1,6 +1,15 @@
 # CS50 Final Project
 ## Jeff Gitahi, Mark Gitau, Andrew Truong, Ryan Wu, CS50 Spring
 
+### User Interface
+Sudoku's interface is with the user on the command-line and with one command line argument
+```
+./sudoku create // to create a random Sudoku puzzle
+```
+```
+./sudoku solve to solve a random Sudoku puzzle
+```
+
 ### Functional decomposition modules into functions
 We anticipate the following functions:
 1. *main*, which parses the arguments and calls functions to either create or solve a puzzle
