@@ -22,9 +22,14 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], "create") == 0) {
         return create_sudoku();
     }
+
     else if (strcmp(argv[1], "solve") == 0) {
         solve();
-        return 0;
+    }
+
+    else {
+        fprintf(stderr, "Usage: follow command with \"create\" or \"solve\"\n");
+        return 2;
     }
 
     return 0;
