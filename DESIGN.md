@@ -3,11 +3,13 @@
 
 ### User Interface
 Sudoku's interface is with the user on the command-line and with one command line argument
+To create a random Sudoku puzzle:
 ```
-./sudoku create // to create a random Sudoku puzzle
+./sudoku create
 ```
+To solve a random Sudoku puzzle:
 ```
-./sudoku solve // to solve a random Sudoku puzzle
+./sudoku solve
 ```
 
 ### Inputs and Outputs
