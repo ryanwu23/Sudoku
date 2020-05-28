@@ -296,7 +296,7 @@ int create_sudoku() {
     }
 
     fix(puzzle);
-    
+
     //still working
     take_num(puzzle);
 
@@ -308,7 +308,7 @@ int create_sudoku() {
 		printf("\n");
 
 	}
-
+    
     printf("\n");
 
     return 0;

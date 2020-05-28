@@ -18,7 +18,7 @@ void solve(void);
 
 
 void solve(void){
-
+      
     int input[n][n] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                        { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                        { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -31,8 +31,9 @@ void solve(void){
                        
     int num;
     char c;
+    int number_count = 0;
     int i = 0, j = 0;
-    while ((c = fgetc(stdin)) != EOF){
+    while ((c = fgetc(stdin)) != EOF && number_count < 81){
         if ((num = atoi(&c)) != 0){
             input[i][j] = num;
         }
@@ -41,7 +42,11 @@ void solve(void){
                 i++;
             }
             j = (j + 1) % n;
-        }   
+        }
+        
+        if(isdigit(c)) 
+            number_count++;   
+        
     }
 
     if (isValidGrid(input)){
