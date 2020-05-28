@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <time.h> 
 #include <stdbool.h>
+#include "solve.h"
 
 // Checks whether a number can be placed in the puzzle.
 static bool is_valid (int row_seen[9], int column_seen[9], int square_seen[9], int random) {
@@ -165,6 +166,79 @@ bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puz
 
 }
 
+bool check_uniqueness (int puzzle[9][9]){
+    //get the number of missing spots
+    int missing=0;
+    for (int i=0; i<9; i++){
+         for (int j=0; j<9; j++){
+                if (puzzle[i][j]==0){
+                    missing++;
+                }
+         }
+    }
+    //get the rows and cols for each missing one
+    int row[missing];
+    int col[missing];
+    int counter=0;
+    for (int i=0; i<9; i++){
+         for (int j=0; j<9; j++){
+             if (puzzle[i][j]==0){
+                    row[counter]=i;
+                    col[counter]=j;
+                    counter++;
+             }
+         }
+    }
+    if (missing==1){
+        return true;
+    }
+    int solved[9][9];
+    copy(solved, puzzle);
+    if (!solveSudoku(solved)){
+        return false;
+    }
+
+    for (int i=0; i<missing; i++){
+        for (int j=0; j<9; j++){
+            if (j!=solved[row[i]][col[i]]){
+                int test[9][9];
+                copy(test, puzzle);
+                if (isValidInsert(test,row[i], col[i], j)){
+                    test[row[i]][col[i]]=j;
+                    if (solveSudoku(test)){
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+bool take_num(int puzzle[9][9]){
+        int row;
+        int col;
+        int left=14;
+        while (left>0){
+            row = (rand() % 9 ); 
+            col = (rand() % 9 ); 
+            printf("row: %d, col: %d\n", row, col);
+            printf("left: %d\n", left);
+            if (puzzle[row][col]!=0){   
+                int test[9][9];
+                copy(test, puzzle);
+                test[row][col]=0;
+                printGrid(test);
+                if (check_uniqueness (test)){
+                    printf("taken out\n");
+                    puzzle[row][col]=0;
+                    left--;
+                }
+            }
+        }
+        return true;
+}
+
 /**************** create_sudoku ****************/
 int create_sudoku() {
     srand(time(0)); // https://www.geeksforgeeks.org/generating-random-number-range-c/
@@ -196,7 +270,9 @@ int create_sudoku() {
         copy(puzzle, very_very_original_puzzle);
 
     }
-
+    //still working
+    
+  //  take_num(puzzle);
     // Print out the sudoku puzzle in desired form
     for (int row = 0; row < 9; row ++) {
 		for (int column = 0; column < 9; column ++) {
