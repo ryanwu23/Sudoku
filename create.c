@@ -32,6 +32,26 @@ static void clear(int puzzle[9][9]) {
 	}
 }
 
+
+static void fix(int puzzle[9][9]) {
+
+    for (int row = 0; row < 9; row++) {
+        for (int column = 0; column < 9; column++) {
+
+            if (puzzle[row][column] == 0) {
+                for (int i = 1; i <=9; i++) {
+                    if (isValidInsert(puzzle, row, column, i))
+                        puzzle[row][column] = i;
+
+                }      
+                
+            }
+        }
+    }
+
+
+}
+
 /**************** form_three ****************/
 bool form_three(int puzzle[9][9], int row_start, int column_start) {
     int row_seen[9];
@@ -274,8 +294,11 @@ int create_sudoku() {
         copy(puzzle, very_very_original_puzzle);
 
     }
+
+    fix(puzzle);
+    
     //still working
-    // take_num(puzzle);
+    take_num(puzzle);
 
     // Print out the sudoku puzzle in desired form
     for (int row = 0; row < 9; row ++) {
