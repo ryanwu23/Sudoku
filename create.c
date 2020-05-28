@@ -219,19 +219,23 @@ bool take_num(int puzzle[9][9]){
         int row;
         int col;
         int left=14;
-        while (left>0){
+        while (left > 0){
             row = (rand() % 9 ); 
-            col = (rand() % 9 ); 
-            printf("row: %d, col: %d\n", row, col);
-            printf("left: %d\n", left);
-            if (puzzle[row][col]!=0){   
+            col = (rand() % 9 );  
+            // printf("row: %d, col: %d\n", row, col);
+            // printf("left: %d\n", left);
+            
+            if (puzzle[row][col]!=0){
+
                 int test[9][9];
                 copy(test, puzzle);
                 test[row][col]=0;
-                printGrid(test);
+                // printGrid(test);
+
                 if (check_uniqueness (test)){
-                    printf("taken out\n");
+                    // printf("taken out\n");
                     puzzle[row][col]=0;
+
                     left--;
                 }
             }
@@ -271,12 +275,12 @@ int create_sudoku() {
 
     }
     //still working
-    
-  //  take_num(puzzle);
+    // take_num(puzzle);
+
     // Print out the sudoku puzzle in desired form
     for (int row = 0; row < 9; row ++) {
 		for (int column = 0; column < 9; column ++) {
-				printf("%i ", puzzle[row][column]);
+			printf("%i ", puzzle[row][column]);
 		}
 		printf("\n");
 
