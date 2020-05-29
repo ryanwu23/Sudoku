@@ -66,3 +66,17 @@ bool isValidInsert(int grid[9][9], int row, int col, int num){
     return true;
 
 }
+
+/**************** isValidPuzzle ****************/
+bool isValidPuzzle (int puzzle[9][9]){
+   //loop through each value in the puzzle
+   for (int i=0; i<9; i++){
+        for (int j=0; j<9; j++){
+            //if the value is 0 or if it doesn't meet the requirements of isValidInsert, then it's a non-valid puzzle
+            if (!isValidInsert(puzzle, i, j, puzzle[i][j]) || puzzle[i][j]==0){
+                return false;
+            }
+        }
+    }
+    return true;
+}
