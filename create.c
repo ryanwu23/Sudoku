@@ -173,7 +173,7 @@ bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puz
 
 }
 
-// Check that puzzle contains unique solutions
+/**************** check_uniqueness ****************/
 bool check_uniqueness (int puzzle[9][9]){
     //get the number of missing spots
     int missing=0;
@@ -185,7 +185,7 @@ bool check_uniqueness (int puzzle[9][9]){
          }
     }
     //get the rows and cols for each missing one
-    int row[missing];
+    int row[missing]; // ex. row[1], col[1] corresponds with one 0 point
     int col[missing];
     int counter=0;
     for (int i=0; i<9; i++){
@@ -197,23 +197,27 @@ bool check_uniqueness (int puzzle[9][9]){
              }
          }
     }
-    if (missing==1){
+    if (missing==1 || missing==0){ //acounts for corner cases
         return true;
     }
+
+    // get a completely solved puzzle as an example
     int solved[9][9];
     copy(solved, puzzle);
-    if (!solveSudoku(solved)){
+    if (!solveSudoku(solved)){ //if can't be solved, no solution so return false
         return false;
     }
-
-    for (int i=0; i<missing; i++){
-        for (int j=0; j<9; j++){
-            if (j!=solved[row[i]][col[i]]){
+    
+    //search for another solution
+    for (int i=0; i<missing; i++){ //for each missing spot
+        for (int j=0; j<9; j++){ //try each potential number
+            if (j!=solved[row[i]][col[i]]){ //skip over the number in solution
                 int test[9][9];
                 copy(test, puzzle);
+                //try solving with new number
                 if (isValidInsert(test,row[i], col[i], j)){
                     test[row[i]][col[i]]=j;
-                    if (solveSudoku(test)){
+                    if (solveSudoku(test)){ //if it can be solved, return false
                         return false;
                     }
                 }
@@ -223,33 +227,26 @@ bool check_uniqueness (int puzzle[9][9]){
     return true;
 }
 
-// Remove numbers from solved puzzle
-bool take_num(int puzzle[9][9]){
+/**************** take_num ****************/
+void take_num(int puzzle[9][9]){
         int row;
         int col;
         int left=14;
+        //loop through until 14 numbers are taken out
         while (left > 0){
+            //get random row and col
             row = (rand() % 9 ); 
             col = (rand() % 9 );  
-            // printf("row: %d, col: %d\n", row, col);
-            // printf("left: %d\n", left);
-            
-            if (puzzle[row][col]!=0){
-
+            if (puzzle[row][col]!=0){ //try to take out if position is non-zero
                 int test[9][9];
                 copy(test, puzzle);
                 test[row][col]=0;
-                // printGrid(test);
-
-                if (check_uniqueness (test)){
-                    // printf("taken out\n");
-                    puzzle[row][col]=0;
-
-                    left--;
+                if (check_uniqueness (test)){ //check uniqueness with the number replaced with a 0
+                    puzzle[row][col]=0; //update actual puzzle with zero if it has unique solutions
+                    left--; //one less to update
                 }
             }
         }
-        return true;
 }
 
 /**************** create_sudoku ****************/

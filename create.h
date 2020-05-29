@@ -42,8 +42,17 @@ bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_
 
 bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puzzle[9][9], int attempt[1][1]);
 
+/**************** check_uniqueness ****************/
+/* Checks whether a given puzzle has one unique solution
+ *
+ * We return:
+ * - false if there are other solutions
+ * - true if there is only one unique solution
+ */
 bool check_uniqueness (int puzzle[9][9]);
 
+/**************** take_num ****************/
+/* Takes away 14 numbers from the puzzle to create a sudoku to be solved */
 void take_num(int puzzle[9][9]);
 
 /**************** create_sudoku ****************/
