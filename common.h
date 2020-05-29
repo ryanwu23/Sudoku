@@ -33,11 +33,11 @@
  void printGrid(int grid[9][9]);
 
 /**************** isValidInsert ****************/
-/* Determines if a number can be inserted at a (row, column) in a grid and follow sudoku rules*/
+/* Determines if a number can be inserted at a (row, column) in a grid and follow sudoku rules */
 bool isValidInsert(int grid[9][9], int row, int col, int num);
 
 /**************** isValidPuzzle ****************/
-/* Determines if a filled out puzzle is a valid puzzle that meets are the rules of a sudoku*/
+/* Determines if a filled out puzzle is a valid puzzle that meets are the rules of a sudoku */
 bool isValidPuzzle (int puzzle[9][9]);
 
  #endif
