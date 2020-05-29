@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I ../
 PROG = sudoku
-OBJS = create.o sudoku.o
+OBJS = common.o create.o sudoku.o
 
 # Rules
 $(PROG): $(OBJS)

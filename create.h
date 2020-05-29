@@ -1,6 +1,6 @@
 /* create.h - CS50 'create' module header file
  *
- * Andrew Truong, Mark Gitau, Jeff Gitahi, Ryan Wu, Spring 2020
+ * Mark Gitau, Jeff Gitahi, Andrew Truong, Ryan Wu, Spring 2020
  */
 
 #ifndef __CREATE_H
@@ -11,6 +11,7 @@
 #include <time.h> 
 #include <stdbool.h>
 #include "solve.h"
+#include "common.h"
 
 /**************** form_three ****************/
 /* Fills in a 3x3 square in a 9x9 puzzle following sudoku rules
@@ -38,9 +39,13 @@ bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_
  *  - false if there create indicates that there is failure
  *  - true all squares have been filled out
  */
+
 bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puzzle[9][9], int attempt[1][1]);
+
 bool check_uniqueness (int puzzle[9][9]);
+
 void take_num(int puzzle[9][9]);
+
 /**************** create_sudoku ****************/
 /* Creates all variables and calls all functions to make entire sudoku puzzle */
 int create_sudoku();

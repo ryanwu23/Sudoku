@@ -10,34 +10,37 @@
 #include <time.h> 
 #include <stdbool.h>
 #include "solve.h"
+#include "common.h"
 
 // Checks whether a number can be placed in the puzzle.
 static bool is_valid (int row_seen[9], int column_seen[9], int square_seen[9], int random) {
     return (square_seen[random-1] == 0 && row_seen[random-1] == 0 && column_seen[random-1] == 0);
 }
 
-// Makes a copy of an original puzzle
-static void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
-    for (int row = 0; row < 9; row ++) {
-		for (int column = 0; column < 9; column ++) 
-				copy_puzzle[row][column] = puzzle[row][column];
-	}
-}
+// // Makes a copy of an original puzzle
+// static void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
+//     for (int row = 0; row < 9; row ++) {
+// 		for (int column = 0; column < 9; column ++) 
+// 				copy_puzzle[row][column] = puzzle[row][column];
+// 	}
+// }
 
-// Clears a puzzle by turning all of the values to 0
-static void clear(int puzzle[9][9]) {
-    for (int row = 0; row < 9; row ++) {
-		for (int column = 0; column < 9; column ++) 
-				puzzle[row][column] = 0;
-	}
-}
+// // Clears a puzzle by turning all of the values to 0
+// static void clear(int puzzle[9][9]) {
+//     for (int row = 0; row < 9; row ++) {
+// 		for (int column = 0; column < 9; column ++) 
+// 				puzzle[row][column] = 0;
+// 	}
+// }
 
-
+// Fixes occasional zero left behind in puzzle
+// Puzzle in this case would have valid values, but zero is left
 static void fix(int puzzle[9][9]) {
 
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column < 9; column++) {
-
+            
+            // For zero case, find the value that fits into it
             if (puzzle[row][column] == 0) {
                 for (int i = 1; i <=9; i++) {
                     if (isValidInsert(puzzle, row, column, i))
@@ -186,6 +189,7 @@ bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puz
 
 }
 
+// Check that puzzle contains unique solutions
 bool check_uniqueness (int puzzle[9][9]){
     //get the number of missing spots
     int missing=0;
@@ -235,6 +239,7 @@ bool check_uniqueness (int puzzle[9][9]){
     return true;
 }
 
+// Remove numbers from solved puzzle
 bool take_num(int puzzle[9][9]){
         int row;
         int col;
@@ -295,19 +300,12 @@ int create_sudoku() {
 
     }
 
-    fix(puzzle);
+    fix(puzzle); // ensure no zeroes left behind
 
-    //still working
-    take_num(puzzle);
+    take_num(puzzle); // remove values to form puzzle that would have unique solution
 
     // Print out the sudoku puzzle in desired form
-    for (int row = 0; row < 9; row ++) {
-		for (int column = 0; column < 9; column ++) {
-			printf("%i ", puzzle[row][column]);
-		}
-		printf("\n");
-
-	}
+    printGrid(puzzle);
     
     printf("\n");
 
