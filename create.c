@@ -1,7 +1,7 @@
 /*
  * create.c - CS50 'create' module
  *
- * Andrew Truong, Mark Gitau, Jeff Gitahi, Ryan Wu, Spring 2020
+ * Mark Gitau, Jeff Gitahi, Andrew Truong, Ryan Wu, Spring 2020
  */
 
 #include <stdio.h>
@@ -16,22 +16,6 @@
 static bool is_valid (int row_seen[9], int column_seen[9], int square_seen[9], int random) {
     return (square_seen[random-1] == 0 && row_seen[random-1] == 0 && column_seen[random-1] == 0);
 }
-
-// // Makes a copy of an original puzzle
-// static void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
-//     for (int row = 0; row < 9; row ++) {
-// 		for (int column = 0; column < 9; column ++) 
-// 				copy_puzzle[row][column] = puzzle[row][column];
-// 	}
-// }
-
-// // Clears a puzzle by turning all of the values to 0
-// static void clear(int puzzle[9][9]) {
-//     for (int row = 0; row < 9; row ++) {
-// 		for (int column = 0; column < 9; column ++) 
-// 				puzzle[row][column] = 0;
-// 	}
-// }
 
 // Fixes occasional zero left behind in puzzle
 // Puzzle in this case would have valid values, but zero is left
