@@ -94,8 +94,26 @@ int createSudoku();
 ```
 
 The createSudoku function works as follows:
-
-1. (TO BE FILLED IN)
+1. Entire creation of sudoku is done by `createSudoku()`, which does all function calls
+2. Call `formThree` to make the diagonal 3x3 squares on the puzzle: (0,0), (3,3), (6,6)
+    1. `formThree` uses an array to store values seen in each row, column, and 3x3 square
+    2. Assign values to arrays based on values found in each row, column, and 3x3 square
+        1. Reset values when for corresponding array when row, column, or 3x3 square changes
+    3 For each position, pick a random value from 1-9
+    4 Use `isValid` to see if value can be placed in a certain position
+        1 `isValid` takes in arrays to check if random value is "valid"
+        2 Continue to generate random numbers until valid number is found or determined to be stuck
+            1 If stuck, return false. Diagonals are guaranteed to work, but in later uses of `formThree`, 3x3 generation may need to restart as no value may exist to form 3x3
+            2 If number is valid, insert it into the puzzle and update the arrays
+3. Call `compute` to form the remainder of the puzzle
+    1. Store a value for amount of attempts done. If attempts above 3000, restart from original with only diagonals filled in
+    2. Call `create` for each 3x3 square left to be filled in
+        1. `create` calls `formThree` on the 3x3 square while being able to restart the `formThree` on the 3x3 square until the 3x3 is filled our attempts are above 3000
+3. Call `fix` on the puzzle formed to ensure that all positions are filled
+    1. Iterate through each position in puzzle
+        1. If a number through 1-9 is insertable based on `isValidInsert`, insert number
+        2. This fixes a display situation, it is guaranteed that value found to fit is THE number that belongs
+5.
 
 
 #### Solve 
