@@ -7,7 +7,7 @@
 
 if [ $# -ne 1 ]
 then
-    echo Usage: Enter one numerical argument for many tests to be done
+    echo "Usage: Enter one numerical argument for how many tests to be done"
     exit 1
 fi
 
@@ -18,11 +18,15 @@ COUNTER=0
 while [ $COUNTER -lt $AMOUNT ]
 do
     echo Test: $((COUNTER+1))
+
     # Creating
     sleep 0.5
     ./sudoku create > fuzztesting_puzzle
+
     echo Created sudoku puzzle:
+
     cat fuzztesting_puzzle
+    
     ./sudoku unique < fuzztesting_puzzle # Show if sudoku created has unique solution
 
     echo

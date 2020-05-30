@@ -9,8 +9,15 @@ $(PROG): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 # Phony targets
-.PHONY: clean
+.PHONY: clean test valgrind
 
 clean:
-	rm -f core
+	rm -f *core*
 	rm -f $(PROG) *~ *.o
+
+test:
+	bash -v unittesting.sh
+	bash -v fuzztesting.sh 8
+
+valgrind:
+	valgrind ./sudoku create | ./sudoku solve

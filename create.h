@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include "solve.h"
 #include "common.h"
+#define n 9
 
 /**************** form_three ****************/
 /* Fills in a 3x3 square in a 9x9 puzzle following sudoku rules
@@ -20,7 +21,7 @@
  *  - false if a 3x3 square cannot be found after many attempts
  *  - true if a 3x3 square has been found
  */
- bool form_three(int puzzle[9][9], int row_start, int column_start);
+ bool formThree(int puzzle[n][n], int startRow, int startCol);
 
 /**************** create ****************/
 /* Will attempt to restart the creation of forming a 3x3 if it fails
@@ -30,7 +31,7 @@
  *  - false if there are over 3000 failed attempts overall
  *  - true a 3x3 has been formed
  */
-bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_start, int column_start);
+bool create(int puzzleCopy[n][n], int puzzle[n][n], int attempt[1][1], int startRow, int startCol);
 
 /**************** compute ****************/
 /* Will attempt to form 3x3 at all non-diagonal 3x3 squares
@@ -40,7 +41,7 @@ bool create(int copy_puzzle[9][9], int puzzle[9][9], int attempt[1][1], int row_
  *  - true all squares have been filled out
  */
 
-bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puzzle[9][9], int attempt[1][1]);
+bool compute(int originalPuzzle[n][n], int puzzle[n][n], int puzzleCopy[n][n], int attempt[1][1]);
 
 /**************** check_uniqueness ****************/
 /* Checks whether a given puzzle has one unique solution
@@ -49,14 +50,14 @@ bool compute(int very_very_original_puzzle[9][9], int puzzle[9][9], int copy_puz
  * - false if there are other solutions
  * - true if there is only one unique solution
  */
-bool check_uniqueness (int puzzle[9][9]);
+bool checkUniqueness (int puzzle[n][n]);
 
 /**************** take_num ****************/
 /* Takes away 14 numbers from the puzzle to create a sudoku to be solved */
-void take_num(int puzzle[9][9]);
+void takeNum(int puzzle[n][n]);
 
 /**************** create_sudoku ****************/
 /* Creates all variables and calls all functions to make entire sudoku puzzle */
-int create_sudoku();
+int createSudoku();
 
  #endif // __CREATE_H

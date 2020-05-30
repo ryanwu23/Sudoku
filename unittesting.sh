@@ -10,10 +10,22 @@
 # Incorrect number of arguments
 ./sudoku
 
-./sudoku argument number not one
+./sudoku create solve
 
 # Command is not "create" or "solve"
 ./sudoku generate
+
+# Unsolvable grid
+
+./sudoku solve < ./unittesting_input/unittesting.in4
+
+# Grid with negative numbers
+
+./sudoku solve < ./unittesting_input/unittesting.in5
+
+# Grid with numbers > 9
+
+./sudoku solve < ./unittesting_input/unittesting.in6
 
 #####################################
 ### create.c tests should pass ###
