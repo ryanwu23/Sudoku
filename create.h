@@ -53,7 +53,7 @@ bool compute(int originalPuzzle[n][n], int puzzle[n][n], int puzzleCopy[n][n], i
 bool checkUniqueness (int puzzle[n][n]);
 
 /**************** take_num ****************/
-/* Takes away 14 numbers from the puzzle to create a sudoku to be solved */
+/* Takes away  numbers from the puzzle to create a sudoku to be solved */
 void takeNum(int puzzle[n][n]);
 
 /**************** create_sudoku ****************/

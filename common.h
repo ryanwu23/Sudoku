@@ -43,7 +43,7 @@ bool isValidInsert(int grid[n][n], int row, int col, int num);
 bool isValidPuzzle (int puzzle[n][n]);
 
 /**************** readPuzzle ****************/
-/* Reads a puzzle in from stdin and stores it in a pasased two-dimensional array */
+/* Reads a puzzle in from stdin and stores it in a two-dimensional array */
 void readPuzzle (int input[n][n]);
 
  #endif
