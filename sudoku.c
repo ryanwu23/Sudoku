@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     }
 
     else {
-        fprintf(stderr, "Usage: follow command with \"create\", \"solve\"\n, \"unique\", or \"valid\"\n");
+        fprintf(stderr, "Usage: follow command with \"create\", \"solve\", \"unique\", or \"valid\"\n");
         return 2;
     }
 
