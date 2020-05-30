@@ -14,17 +14,11 @@
 #define n 9
 
 // Checks whether a number can be placed in the puzzle.
-
-// Takes in arrays instead of row & col numbers
-
-static bool isValid(int rowSeen[n], int colSeen[n], int squareSeen[n], int random) {
-
+static bool isValid (int rowSeen[n], int colSeen[n], int squareSeen[n], int random) {
     return (squareSeen[random-1] == 0 && rowSeen[random-1] == 0 && colSeen[random-1] == 0);
 }
 
-
 // Fixes occasional zero left behind in puzzle
-
 // Puzzle in this case would have valid values, but zero is left
 static void fix(int puzzle[n][n]) {
 
@@ -34,19 +28,20 @@ static void fix(int puzzle[n][n]) {
             // For zero case, find the value that fits into it
             if (puzzle[row][column] == 0) {
 
-                for (int i = 1; i <= n; i++) {
-
-                    if (isValidInsert(puzzle, row, column, i))
+                for (int i = 1; i <=n; i++) {
+                     
+                    if (isValidInsert(puzzle, row, column, i)) {
                         puzzle[row][column] = i;
-                }         
+                    }
+                        
+                }      
+                
             }
         }
     }
-
-
 }
 
-/**************** form_three ****************/
+/**************** formThree ****************/
 bool formThree(int puzzle[n][n], int startRow, int startCol) {
     int rowSeen[n];
 	int colSeen[n];
@@ -93,14 +88,14 @@ bool formThree(int puzzle[n][n], int startRow, int startCol) {
                     colSeen[value-1] = 1;
             }
 
-            // Picks a random number from 1-9
-            random = (rand() % n) + 1;    
+            // Picks a random number from 1-n
+            random = (rand() % n ) + 1;    
 
             int stuck = 0;
 
             // Keeps on trying to put in the random number
             while (!isValid(rowSeen, colSeen, squareSeen, random)) {
-                random = (rand() % n) + 1;
+                random = (rand() % n ) + 1;
                  stuck++;
 
                  // Continuous failure indicates no appropriate value exists
@@ -180,39 +175,40 @@ bool compute(int originalPuzzle[n][n], int puzzle[n][n], int puzzleCopy[n][n], i
 
 }
 
-/**************** check_uniqueness ****************/
+/**************** checkUniqueness ****************/
 bool checkUniqueness (int puzzle[n][n]){
-
-    // printGrid(puzzle);
-    // printf("-----------------------------------------\n");
-
     //get the number of missing spots
-    int missing = 0;
-    for (int i = 0; i < n; i++){
-         for (int j = n; j < n; j++){
+    int missing=0;
 
-                if (puzzle[i][j]==0){
-                    missing++;
-                }
-         }
-    }
-    //get the rows and cols for each missing one
-    int row[missing]; // ex. row[1], col[1] corresponds with one 0 point
-    int col[missing];
-    int counter = 0;
+    for (int i=0; i<n; i++){
 
-    for (int i = 0; i < n; i++){
-         for (int j = 0; j < n; j++){
-            if (puzzle[i][j] == 0){
-                // printf("%d %d\n", i, j);
-                row[counter] = i;
-                col[counter] = j;
-                counter++;
-    
+         for (int j=0; j<n; j++){
+
+            if (puzzle[i][j]==0){
+                missing++;
             }
         }
     }
-    if (missing == 1 || missing == 0){ //acounts for corner cases
+
+
+    //get the rows and cols for each missing one
+    int row[missing]; // ex. row[1], col[1] corresponds with one 0 point
+    int col[missing];
+    int counter=0;
+
+    for (int i=0; i<n; i++){
+
+        for (int j=0; j<n; j++){
+
+            if (puzzle[i][j]==0){
+                row[counter]=i;
+                col[counter]=j;
+                counter++;
+            }
+        }
+    }
+
+    if (missing==1 || missing==0){  // acounts for corner cases
         return true;
     }
 
@@ -220,25 +216,25 @@ bool checkUniqueness (int puzzle[n][n]){
     int solved[n][n];
 
     copy(solved, puzzle);
-
-    if (!solveSudoku(solved)){ //if can't be solved, no solution so return false
+    if (!solveSudoku(solved)){  // if can't be solved, no solution so return false
         return false;
     }
     
     //search for another solution
-    for (int i = 0; i < missing; i++){  // for each missing spot
+    for (int i = 0; i<missing; i++){ // for each missing spot
 
-        for (int j = 1; j <= n; j++){ // try each potential number
+        for (int j=0; j<n; j++){ // try each potential number
 
-            if (j != solved[row[i]][col[i]]){ // skip over the number in solution
+            if (j!=solved[row[i]][col[i]]){ //skip over the number in solution
 
                 int test[n][n];
+
                 copy(test, puzzle);
 
                 //try solving with new number
-                if (isValidInsert(test, row[i], col[i], j)){
+                if (isValidInsert(test,row[i], col[i], j)){
 
-                    test[row[i]][col[i]] = j;
+                    test[row[i]][col[i]]=j;
 
                     if (solveSudoku(test)){ //if it can be solved, return false
                         return false;
@@ -250,41 +246,37 @@ bool checkUniqueness (int puzzle[n][n]){
     return true;
 }
 
-/**************** take_num ****************/
+/**************** takeNum ****************/
 void takeNum(int puzzle[n][n]){
     int row;
     int col;
-    int left = 14;
+    int left = 45;
 
-    // loop through until 14 numbers are taken out
+    //loop through until 45 numbers are taken out
     while (left > 0){
 
-        // get random row and col
-        row = (rand() % n); 
-        col = (rand() % n); 
+        //get random row and col
+        row = (rand() % n ); 
+        col = (rand() % n );  
 
-        if (puzzle[row][col] != 0){  // try to take out if position is non-zero
+        if (puzzle[row][col] != 0){ //try to take out if position is non-zero
 
             int test[n][n];
-        
+
             copy(test, puzzle);
 
             test[row][col] = 0;
-
-            if (checkUniqueness (test)){   // check uniqueness with the number replaced with a 0
             
-                puzzle[row][col] = 0; // update actual puzzle with zero if it has unique solutions
-
-                left--; // one less to update
+            if (checkUniqueness (test)){ //check uniqueness with the number replaced with a 0
+                puzzle[row][col]=0; //update actual puzzle with zero if it has unique solutions
+                left--; //one less to update
             }
         }
     }
 }
 
-
 /**************** createSudoku ****************/
 int createSudoku() {
-
     srand(time(0)); // https://www.geeksforgeeks.org/generating-random-number-range-c/
 
     int puzzle[n][n];
@@ -299,7 +291,7 @@ int createSudoku() {
     formThree(puzzle, 3, 3);
     formThree(puzzle, 6, 6);
     
-    // Exact copy of diagonal puzzle — guaranteed to be valid
+    // Exact copy of diagonal puzzle — guaranteed to be valid
     int originalPuzzle[n][n];
     copy(originalPuzzle, puzzle);
     

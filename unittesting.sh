@@ -2,7 +2,7 @@
 # Authors: Mark Gitau, Jeff Gitahi, Andrew Truong, Ryan Wu,
 # May 29, 2020
 #
-# usage: bash -v testing.sh
+# usage: bash -v unittesting.sh
 
 #####################################
 ### These tests should fail ###
@@ -19,13 +19,6 @@
 
 ./sudoku solve < ./unittesting_input/unittesting.in4
 
-# Grid with negative numbers
-
-./sudoku solve < ./unittesting_input/unittesting.in5
-
-# Grid with numbers > 9
-
-./sudoku solve < ./unittesting_input/unittesting.in6
 
 #####################################
 ### create.c tests should pass ###
