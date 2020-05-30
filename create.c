@@ -288,7 +288,5 @@ int create_sudoku() {
     // Print out the sudoku puzzle in desired form
     printGrid(puzzle);
     
-    printf("\n");
-
     return 0;
 }

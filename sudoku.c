@@ -28,8 +28,31 @@ int main(int argc, char *argv[]) {
         solve();
     }
 
+    // If user wants to check uniqueness or validity of a puzzle
+    // Most likely used for testing
+    else if (strcmp(argv[1], "unique") == 0) {
+        int puzzle[9][9];
+        clear(puzzle);
+        readPuzzle(puzzle);
+
+        if (check_uniqueness(puzzle))
+            printf("Puzzle is unique.\n");
+        else   
+            printf("Puzzle is not unique.\n");
+    }
+
+    else if (strcmp(argv[1], "valid") == 0) {
+        int puzzle[9][9];
+        readPuzzle(puzzle);
+        
+        if (isValidPuzzle(puzzle))
+            printf("Puzzle is valid.\n");
+        else   
+            printf("Puzzle is not valid.\n");
+    }
+
     else {
-        fprintf(stderr, "Usage: follow command with \"create\" or \"solve\"\n");
+        fprintf(stderr, "Usage: follow command with \"create\", \"solve\"\n, \"unique\", or \"valid\"\n");
         return 2;
     }
 

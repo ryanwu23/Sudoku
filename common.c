@@ -8,6 +8,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
+
 
 /**************** copy ****************/
 void copy(int copy_puzzle[9][9], int puzzle[9][9]) {
@@ -79,4 +81,27 @@ bool isValidPuzzle (int puzzle[9][9]){
         }
     }
     return true;
+}
+
+/**************** readPuzzle ****************/
+void readPuzzle (int input[9][9]){
+    int num;
+    char c;
+    int number_count = 0;
+    int i = 0, j = 0;
+    while ((c = fgetc(stdin)) != EOF && number_count < 81){
+        if ((num = atoi(&c)) != 0){
+            input[i][j] = num;
+        }
+        if (isdigit(c) != 0){
+            if (j + 1 == 9){
+                i++;
+            }
+            j = (j + 1) % 9;
+        }
+        
+        if(isdigit(c)) 
+            number_count++;   
+        
+    }
 }

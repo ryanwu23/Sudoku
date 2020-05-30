@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 /**************** copy ****************/
 /* Makes a copy of an original puzzle into a copy puzzle
@@ -39,5 +40,9 @@ bool isValidInsert(int grid[9][9], int row, int col, int num);
 /**************** isValidPuzzle ****************/
 /* Determines if a filled out puzzle is a valid puzzle that meets are the rules of a sudoku */
 bool isValidPuzzle (int puzzle[9][9]);
+
+/**************** readPuzzle ****************/
+/* Reads a puzzle in from stdin and stores it in a pasased two-dimensional array */
+void readPuzzle (int input[9][9]);
 
  #endif
