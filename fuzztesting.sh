@@ -19,6 +19,7 @@ while [ $COUNTER -lt $AMOUNT ]
 do
     echo Test: $((COUNTER+1))
     # Creating
+    sleep 0.5
     ./sudoku create > fuzztesting_puzzle
     echo Created sudoku puzzle:
     cat fuzztesting_puzzle

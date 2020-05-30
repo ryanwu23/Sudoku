@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
 
     else if (strcmp(argv[1], "valid") == 0) {
         int puzzle[9][9];
+        clear(puzzle);
         readPuzzle(puzzle);
         
         if (isValidPuzzle(puzzle))
