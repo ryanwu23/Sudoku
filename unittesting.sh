@@ -12,7 +12,7 @@
 
 ./sudoku argument number not one
 
-# Command is not "create" or "solve"
+# Command is not "create" or "solve" (or "unique" or "valid")
 ./sudoku generate
 
 #####################################
