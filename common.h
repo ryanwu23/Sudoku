@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <ctype.h>
-#define n 9
+
 
 /**************** copy ****************/
 /* Makes a copy of an original puzzle into a copy puzzle
@@ -20,7 +20,7 @@
  *  - valid two-dimensional array that is original puzzle
  *  - valid two-dimensional array that will have original values copied to
  */
- void copy(int puzzleCopy[n][n], int puzzle[n][n]);
+ void copy(int puzzleCopy[9][9], int puzzle[9][9]);
 
 /**************** clear ****************/
 /* Clears a puzzle by turning all of the values to 0
@@ -28,22 +28,22 @@
  * Caller provides:
  *  - valid two-dimensional array that is puzzle which values will be made zero
  */
- void clear(int puzzle[n][n]);
+ void clear(int puzzle[9][9]);
 
 /**************** printGrid ****************/
 /* Prints the sudoku puzzle to stdout */
- void printGrid(int grid[n][n]);
+ void printGrid(int grid[9][9]);
 
 /**************** isValidInsert ****************/
 /* Determines if a number can be inserted at a (row, column) in a grid and follow sudoku rules */
-bool isValidInsert(int grid[n][n], int row, int col, int num);
+bool isValidInsert(int grid[9][9], int row, int col, int num);
 
 /**************** isValidPuzzle ****************/
 /* Determines if a filled out puzzle is a valid puzzle that meets are the rules of a sudoku */
-bool isValidPuzzle (int puzzle[n][n]);
+bool isValidPuzzle (int puzzle[9][9]);
 
 /**************** readPuzzle ****************/
 /* Reads a puzzle in from stdin and stores it in a two-dimensional array */
-void readPuzzle (int input[n][n]);
+void readPuzzle (int input[9][9]);
 
  #endif

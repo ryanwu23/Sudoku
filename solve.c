@@ -83,18 +83,6 @@ bool isValidGrid(int grid[n][n]){
                     return false;
                 }
             }
-
-            // check for negative numbers
-            if (grid[i][j] < 0){
-                fprintf(stderr, "Grid cannot have negative numbers.\n");
-                return false;
-            }
-
-            // check for numbers > n (9)
-            if (grid[i][j] > n){
-                fprintf(stderr, "Grid cannot have numbers > 9.\n");
-                return false;
-            }
         }
     }
     return true;
