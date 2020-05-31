@@ -13,7 +13,7 @@ fi
 
 AMOUNT=$1
 
-# Generate random puzzles and then solve it 10 times
+# Generate random puzzles and then solve it amount of times specified by user
 COUNTER=0
 while [ $COUNTER -lt $AMOUNT ]
 do
@@ -22,11 +22,9 @@ do
     # Creating
     sleep 0.5
     ./sudoku create > fuzztesting_puzzle
-
     echo Created sudoku puzzle:
-
     cat fuzztesting_puzzle
-    
+
     ./sudoku unique < fuzztesting_puzzle # Show if sudoku created has unique solution
 
     echo
@@ -35,7 +33,8 @@ do
     echo Solved Sudoku puzzle
     ( ./sudoku solve < fuzztesting_puzzle ) > fuzztesting_puzzle_solved
     cat fuzztesting_puzzle_solved
-    ./sudoku valid < fuzztesting_puzzle_solved
+
+    ./sudoku valid < fuzztesting_puzzle_solved # Show if solved sudoku is a valid sudoku
 
     echo -------------------------------------
 
@@ -43,5 +42,6 @@ do
 done
 
 
+# Clean up files
 rm -f fuzztesting_puzzle
 rm -f fuzztesting_puzzle_solved
