@@ -113,7 +113,15 @@ The createSudoku function works as follows:
     1. Iterate through each position in puzzle
         1. If a number through 1-9 is insertable based on `isValidInsert`, insert number
         2. This fixes a display situation, it is guaranteed that value found to fit is THE number that belongs
-5.
+5. Call `takeNum` on the puzzle to take away numbers in the puzzle
+    1. Take random rows and cols
+    2. If not zero already, try taking away a 0 and call `checkUniqueness`
+        1. `checkUniqueness` checks whether a puzzle has one unique solution
+        2. gets the number and locations of zeros in the puzzle
+        3. solves it once with `solveSudoku`
+        4. for each zero, try solving with a different value than that in the solved sudoku.
+        5. if it can be solved again, return false and if it goes through all possible combinations with no other solution, return true.
+    3. if only one unique solution, update puzzle with that zero
 
 
 #### Solve 
