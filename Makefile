@@ -16,8 +16,8 @@ clean:
 	rm -f $(PROG) *~ *.o
 
 test:
-	bash -v unittesting.sh
-	bash -v fuzztesting.sh 8
+	./unittesting.sh
+	./fuzztesting.sh 8
 
 valgrind:
 	valgrind ./sudoku create | ./sudoku solve

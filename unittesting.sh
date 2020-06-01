@@ -2,7 +2,7 @@
 # Authors: Mark Gitau, Jeff Gitahi, Andrew Truong, Ryan Wu,
 # May 29, 2020
 #
-# usage: bash -v unittesting.sh
+# usage: unittesting.sh
 
 #####################################
 ### These tests should fail ###
@@ -28,14 +28,17 @@ echo Results of create:
 # Simple test
 ./sudoku create
 sleep 1
+echo
 
 # Simple test (2), should be unique
 ./sudoku create 
 sleep 1
+echo
 
 # Simple test (3), should be unique
 ./sudoku create 
 sleep 1
+echo
 
 #####################################
 ### solve.c tests that should pass ###
