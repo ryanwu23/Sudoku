@@ -250,7 +250,7 @@ bool checkUniqueness (int puzzle[n][n]){
 void takeNum(int puzzle[n][n]){
     int row;
     int col;
-    int left = 45;
+    int left = 40;
 
     //loop through until 45 numbers are taken out
     while (left > 0){
