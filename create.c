@@ -281,11 +281,8 @@ int createSudoku() {
 
     int puzzle[n][n];
 
-    for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++)
-			puzzle[i][j] = 0;
-	}
-
+    clear(puzzle);
+    
     // Complete diagonals
     formThree(puzzle, 0, 0);
     formThree(puzzle, 3, 3);
